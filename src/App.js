@@ -9,6 +9,7 @@ import Divider from '@mui/material/Divider';
 import { Component } from 'react';
 import { Column, Row } from 'simple-flexbox';
 import {Helmet} from 'react-helmet';
+import "./App.css";
 //import ReactToPrint, { PrintContextConsumer } from "react-to-print";
 
 
@@ -69,11 +70,12 @@ class App2 extends React.Component {
             personName : "priya",
             buttonActive: true,  
             numberOfImages: 10,
+            correctCount : 0,
+            numAttempts : 0,
             startEnd: 10,
             currentIdx : 0,
             image1Label: "Real",
             image2Label: "Real",  
-            names : ["sunil", "rottoo"],
             numsImageList : ["https://gutteringrepairs.com/images/number_one.jpg", "https://i.ebayimg.com/images/g/rVkAAOSw1O9gKFd-/s-l640.jpg", "https://st2.depositphotos.com/5389310/9481/i/450/depositphotos_94814374-stock-photo-3d-plastic-blue-number-3.jpg",
             "https://valleycomfortheatingandair.com/wp-content/uploads/2018/08/4-Types-of-Commercial-Air-Conditioning-Systems-Valley-Comfort-Heating-and-Air-CA-300x300.png", "https://appliquedesignz.com/image/cache/data/Number_5_Applique_Design_530_0-800x800.jpg"],
             lettersImageList: ["https://clipartmag.com/images/image-of-the-letter-a-1.jpg", "https://t3.ftcdn.net/jpg/01/37/43/14/240_F_137431495_XLcEY3GXa2ky7RVlTAWfoXFSTuDZMf8k.jpg",
@@ -92,14 +94,16 @@ class App2 extends React.Component {
 
    handleRealClick1()
    {
-    alert("Image 1 was clicked as real");
     this.setState({"buttonActive" : false});
-   }
+    this.setState({"correctCount" : this.state.correctCount + 1})
+    this.setState({"numAttempts" : this.state.numAttempts + 1})
+    }
 
    handleRealClick2()
    {
-    alert("Image 2 was clicked as real");
+
     this.setState({"buttonActive" : false});
+    this.setState({"numAttempts" : this.state.numAttempts + 1})
    }
 
    toggle1() {
@@ -175,7 +179,7 @@ handleStartEndInputChange(event) {
                 <style>{'body { background-color: lightblue; alignItems: "center"}'}</style>
             </Helmet>
               <h1>
-                Can You Tell The Real Image From The Generated Image  ? {this.state.names[1]}
+                Can You Tell The Real Image From The Generated Image ? 
                 </h1>  
               <label>  
                   Name:    
@@ -187,19 +191,22 @@ handleStartEndInputChange(event) {
              </label>  
              <br /> 
              <label>  
-                 Number of Images:  
+                 Number of Correct Guesses:  
                  <input  
                  name="startEnd"  
-                 type="number"  
-                 value={this.state.numberOfImages}  
+                 type="text"  
+                 value={this.state.correctCount}
                  onChange={this.handleStartEndInputChange} />  
-             </label>  
+             </label> 
+             <label>
+              out of {this.state.numAttempts}
+              </label> 
               <br />
         <Divider />
         <Column flexGrow={1}>
         <Row vertical='center'>
           <Column flexGrow={1} horizontal='center'>
-            <h3> Image 1 </h3>
+             <h3> Image 1 </h3>
             <img src={this.state.numsImageList[this.state.currentIdx]}  width={250} height={250} alt="React Image" />
             <Button variant="contained" image1 onClick={this.handleRealClick1}  style={{ backgroundColor: this.state.buttonActive ? "blue" : "grey" }} disabled = {!this.state.buttonActive}>  
               {this.state.image1Label} 
@@ -209,7 +216,7 @@ handleStartEndInputChange(event) {
           </Divider>
           <Column flexGrow={1} horizontal='center'>
             <h3> Image 2 </h3>
-            <img src={this.state.lettersImageList[this.state.currentIdx]}  width={250} height={250} alt="React Image" />
+             <img src={this.state.lettersImageList[this.state.currentIdx]}  width={250} height={250} alt="React Image" />
             <Button variant="contained" image2  onClick={this.handleRealClick2} style={{ backgroundColor: this.state.buttonActive ? "blue" : "grey" }} disabled = {!this.state.buttonActive}>  
               {this.state.image2Label}
             </Button>
@@ -227,9 +234,6 @@ handleStartEndInputChange(event) {
       <Button variant="contained" end>  
               END 
             </Button>    
-      <Button variant="contained">
-              GENERATE REPORT
-            </Button>
             </Column>
          </form>  
      );  
