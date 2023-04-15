@@ -88,7 +88,8 @@ class App2 extends React.Component {
         this.handleRealClick1 = this.handleRealClick1.bind(this);
         this.handleRealClick2 = this.handleRealClick2.bind(this);
         this.toggle1 = this.toggle1.bind(this);
-        this.toggle2 = this.toggle2.bind(this);      
+        this.toggle2 = this.toggle2.bind(this); 
+        this.handleNextClick = this.handleNextClick.bind(this);     
    
    }
 
@@ -101,9 +102,15 @@ class App2 extends React.Component {
 
    handleRealClick2()
    {
-
     this.setState({"buttonActive" : false});
     this.setState({"numAttempts" : this.state.numAttempts + 1})
+   }
+
+   handleNextClick()
+   {
+    alert("number of images " + this.state.numsImageList.length)
+    this.setState({"buttonActive" : true});
+ 
    }
 
    toggle1() {
@@ -228,7 +235,7 @@ handleStartEndInputChange(event) {
       <Button variant="contained" reset>  
               Reset
             </Button>
-      <Button variant="contained" onClick={this.toggle2}>
+      <Button variant="contained" onClick={this.handleNextClick} disabled = {this.state.numsImageList.length == this.state.numAttempts}>
               NEXT 
             </Button>
       <Button variant="contained" end>  
