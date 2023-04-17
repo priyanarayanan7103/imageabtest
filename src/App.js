@@ -7,9 +7,10 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';  
 import Divider from '@mui/material/Divider';
 import { Component } from 'react';
-import { Column, Row } from 'simple-flexbox';
+import Grid from '@mui/material/Grid'; // Grid version 2
 import {Helmet} from 'react-helmet';
 import "./App.css";
+import Typography from '@mui/material/Typography';
 //import ReactToPrint, { PrintContextConsumer } from "react-to-print";
 
 
@@ -89,7 +90,8 @@ class App2 extends React.Component {
         this.handleRealClick2 = this.handleRealClick2.bind(this);
         this.toggle1 = this.toggle1.bind(this);
         this.toggle2 = this.toggle2.bind(this); 
-        this.handleNextClick = this.handleNextClick.bind(this);     
+        this.handleNextClick = this.handleNextClick.bind(this); 
+        this.handleResetClick = this.handleResetClick.bind(this);    
    
    }
 
@@ -110,7 +112,17 @@ class App2 extends React.Component {
    {
     alert("number of images " + this.state.numsImageList.length)
     this.setState({"buttonActive" : true});
- 
+
+   }
+
+   handleResetClick()
+   {
+    this.setState({"buttonActive" : true});
+    this.setState({"currentIdx" : 0});
+    this.setState({"numAttempts" : 0});
+    this.setState({"correctCount" : 0});
+    this.setState({"image1Label" : "Real"});
+    this.setState({"image2Label" : "Real"});
    }
 
    toggle1() {
@@ -210,29 +222,38 @@ handleStartEndInputChange(event) {
               </label> 
               <br />
         <Divider />
-        <Column flexGrow={1}>
-        <Row vertical='center'>
-          <Column flexGrow={1} horizontal='center'>
-             <h3> Image 1 </h3>
-            <img src={this.state.numsImageList[this.state.currentIdx]}  width={250} height={250} alt="React Image" />
-            <Button variant="contained" image1 onClick={this.handleRealClick1}  style={{ backgroundColor: this.state.buttonActive ? "blue" : "grey" }} disabled = {!this.state.buttonActive}>  
-              {this.state.image1Label} 
+        <Grid container>
+        <Grid item xs={6}>
+        <Typography align="center">
+        <h3> Image 1 </h3>
+        <img src={this.state.numsImageList[this.state.currentIdx]}  width={250} height={250} alt="React Image" />
+        </Typography>
+        </Grid>
+        <Grid item xs={6}>
+        <Typography align="center">
+        <h3> Image 2 </h3>
+        <img src={this.state.lettersImageList[this.state.currentIdx]}  width={250} height={250} alt="React Image" />
+        </Typography>
+        </Grid>
+        <Grid item xs={6}>
+        <Typography align="center">
+        <Button variant="contained" image1 onClick={this.handleRealClick1}  style={{ backgroundColor: this.state.buttonActive ? "blue" : "grey" }} disabled = {!this.state.buttonActive}>  
+            {this.state.image1Label} 
             </Button>  
-          </Column>
-          <Divider orientation="vertical" flexItem>
-          </Divider>
-          <Column flexGrow={1} horizontal='center'>
-            <h3> Image 2 </h3>
-             <img src={this.state.lettersImageList[this.state.currentIdx]}  width={250} height={250} alt="React Image" />
-            <Button variant="contained" image2  onClick={this.handleRealClick2} style={{ backgroundColor: this.state.buttonActive ? "blue" : "grey" }} disabled = {!this.state.buttonActive}>  
+            </Typography>
+        </Grid>
+        <Grid item xs={6}>
+        <Typography align="center">
+        <Button variant="contained" image2  onClick={this.handleRealClick2} style={{ backgroundColor: this.state.buttonActive ? "blue" : "grey" }} disabled = {!this.state.buttonActive}>  
               {this.state.image2Label}
             </Button>
-          </Column>
-        </Row>
-      </Column>
+            </Typography>
+            </Grid>
+        <Grid item xs={6}>
+        </Grid>
+      </Grid>
       <Divider/>
-      <Column horizontal='center'>
-      <Button variant="contained" reset>  
+      <Button variant="contained" onClick={this.handleResetClick} >  
               Reset
             </Button>
       <Button variant="contained" onClick={this.handleNextClick} disabled = {this.state.numsImageList.length == this.state.numAttempts}>
@@ -241,7 +262,6 @@ handleStartEndInputChange(event) {
       <Button variant="contained" end>  
               END 
             </Button>    
-            </Column>
          </form>  
      );  
   }  
