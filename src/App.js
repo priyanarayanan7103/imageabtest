@@ -110,7 +110,6 @@ class App2 extends React.Component {
 
    handleNextClick()
    {
-    alert("number of images " + this.state.numsImageList.length)
     this.setState({"buttonActive" : true});
 
    }
@@ -253,6 +252,8 @@ handleStartEndInputChange(event) {
         </Grid>
       </Grid>
       <Divider/>
+      <Grid item xs={6}>
+      <Typography align="center">
       <Button variant="contained" onClick={this.handleResetClick} >  
               Reset
             </Button>
@@ -261,7 +262,9 @@ handleStartEndInputChange(event) {
             </Button>
       <Button variant="contained" end>  
               END 
-            </Button>    
+            </Button>  
+            </Typography>
+            </Grid>  
          </form>  
      );  
   }  
