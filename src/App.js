@@ -111,7 +111,7 @@ class App2 extends React.Component {
    handleNextClick()
    {
     this.setState({"buttonActive" : true});
-
+    this.setState({"currentIdx": this.state.currentIdx + 1});
    }
 
    handleResetClick()
