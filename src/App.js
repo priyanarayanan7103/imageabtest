@@ -11,31 +11,8 @@ import Grid from '@mui/material/Grid'; // Grid version 2
 import {Helmet} from 'react-helmet';
 import "./App.css";
 import Typography from '@mui/material/Typography';
-//import ReactToPrint, { PrintContextConsumer } from "react-to-print";
 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" /><img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-//export default App;
 function BasicButtons() {  
   return (  
     <Stack spacing={2} direction="row">  
@@ -46,22 +23,6 @@ function BasicButtons() {
   );  
 }  
 
-/*
-function favColor() {
-  const [imagesnumbers_list,setImages1]=useState([<img src="https://gutteringrepairs.com/images/number_one.jpg"  width={250} height={250} alt="React Image" />,
-  <img src= "https://i.ebayimg.com/images/g/rVkAAOSw1O9gKFd-/s-l640.jpg" width={250} height={250} alt="React Image" />,
-  <img src="https://st2.depositphotos.com/5389310/9481/i/450/depositphotos_94814374-stock-photo-3d-plastic-blue-number-3.jpg"  width={250} height={250} alt="React Image" />]);
-  const [imagesletters_list, setImagesA] = useState([<img src="https://clipartmag.com/images/image-of-the-letter-a-1.jpg"  width={250} height={250} alt="React Image" />,
-  <img src="https://th.bing.com/th/id/OIP.6z64QR4rPzqpFclpcL14ZwHaHa?pid=ImgDet&rs=1"  width={250} height={250} alt="React Image" />,
-  <img src="https://st2.depositphotos.com/5389310/9481/i/450/depositphotos_94813678-stock-photo-3d-plastic-blue-letter-c.jpg"  width={250} height={250} alt="React Image" />]);
-  return (<h1>{imagesnumbers_list}!</h1>);
-}
-
-
-const ComponentToPrint = forwardRef((props, ref) => {
-  return <div ref={ref}>hello world</div>;
-});
-const ref = useRef();*/
 
 
 class App2 extends React.Component {  
@@ -174,22 +135,6 @@ handleStartEndInputChange(event) {
   console.log(this.name);  
 } 
 
- // navigate = useNavigate();
-  //redirectToPythonPage = () => {
-    //Redirect to the python page
-   // navigate("/python");
- // };
-  //redirectToHome = () => {
-    //Redirect to the home page
-    //navigate("/");
-  //};
-  /*let bgColors = { "Default": "#81b71a",
-                    "Blue": "#00B1E1",
-                    "Cyan": "#37BC9B",
-                    "Green": "#8CC152",
-                    "Red": "#E9573F",
-                    "Yellow": "#F6BB42",
-};*/
   render() {  
       return (  
           <form>  
@@ -270,52 +215,6 @@ handleStartEndInputChange(event) {
   }  
 }  
 export default App2; 
-const data = [
-  { name: "Anom", age: 19, gender: "Male" },
-  { name: "Megha", age: 19, gender: "Female" },
-  { name: "Subham", age: 25, gender: "Male"},
-]
-  
-function App4() {
-  return (
-    <div className="App4">
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Gender</th>
-        </tr>
-        {data.map((val, key) => {
-          return (
-            <tr key={key}>
-              <td>{val.name}</td>
-              <td>{val.age}</td>
-              <td>{val.gender}</td>
-            </tr>
-          )
-        })}
-      </table>
-    </div>
-  );
-}
-/*class ExampleComponent extends Component {
-  render() {
-    return (
-      <Column flexGrow={1}>
-        <Row vertical='center'>
-          <Column flexGrow={1} horizontal='center'>
-            <h3> Image 1 </h3>
-            <span> image 1 content </span>
-          </Column>
-          <Column flexGrow={1} horizontal='center'>
-            <h3> Image 2 </h3>
-            <span> image 2 content </span>
-          </Column>
-        </Row>
-      </Column>
-    );
-  }
-}*/
 
 export class Hello extends React.Component {
   state = {
@@ -339,5 +238,3 @@ export class Hello extends React.Component {
     );
   }
 }
-
-//export default ExampleComponent;
