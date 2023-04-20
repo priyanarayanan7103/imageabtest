@@ -13,6 +13,7 @@ import "./App.css";
 import Typography from '@mui/material/Typography';
 
 
+//Function for buttons to be used 
 function BasicButtons() {  
   return (  
     <Stack spacing={2} direction="row">  
@@ -26,6 +27,7 @@ function BasicButtons() {
 
 
 class App2 extends React.Component {  
+  //constructor with initial values
     constructor(props) {  
         super(props);  
         this.state = {  
@@ -49,13 +51,12 @@ class App2 extends React.Component {
         this.handleStartEndInputChange = this.handleStartEndInputChange.bind(this);  
         this.handleRealClick1 = this.handleRealClick1.bind(this);
         this.handleRealClick2 = this.handleRealClick2.bind(this);
-        this.toggle1 = this.toggle1.bind(this);
-        this.toggle2 = this.toggle2.bind(this); 
         this.handleNextClick = this.handleNextClick.bind(this); 
         this.handleResetClick = this.handleResetClick.bind(this);    
    
    }
 
+   //on click of the Real buttons, increment the count of real images and the number of attempts and set the button to inactive
    handleRealClick1()
    {
     this.setState({"buttonActive" : false});
@@ -69,12 +70,14 @@ class App2 extends React.Component {
     this.setState({"numAttempts" : this.state.numAttempts + 1})
    }
 
+   //on click of the Next button, set the button to active again, and increment the current index by 1
    handleNextClick()
    {
     this.setState({"buttonActive" : true});
     this.setState({"currentIdx": this.state.currentIdx + 1});
    }
 
+   //on click of the Reset button, set the 
    handleResetClick()
    {
     this.setState({"buttonActive" : true});
@@ -85,24 +88,6 @@ class App2 extends React.Component {
     this.setState({"image2Label" : "Real"});
    }
 
-   toggle1() {
-   this.setState({"image1Label" : "Real"});
-   this.setState({"image2Label" : "Generated"});
-   this.setState({"currentIdx": this.state.currentIdx + 1});
-    };
-
-    toggle2() {
-     this.setState({"currentIdx": this.state.currentIdx + 1});
-     this.setState({"buttonActive" : true});
-      };
-
-      next(){
-        this.setState({"currentIdx": this.state.currentIdx + 1});
-      }
-
-      generateReport(){
-
-      };
   
    handlePersonInputChange(event) { 
        const target = event.target;  
@@ -135,6 +120,7 @@ handleStartEndInputChange(event) {
   console.log(this.name);  
 } 
 
+//Static part of the code
   render() {  
       return (  
           <form>  
@@ -216,25 +202,4 @@ handleStartEndInputChange(event) {
 }  
 export default App2; 
 
-export class Hello extends React.Component {
-  state = {
-    test: ["a", "b", "c"],
-    index: 0
-  };
-  handleClick = () => {
-    let i = this.state.index < this.state.test.length ? this.state.index += 1 : 0;
-    this.setState({ index: i });
-  };
-  render() {
-    return (
-      <div>
-        {this.state.test.slice(0, this.state.index).map(v => {
-          return (
-            <span>{v}</span>
-          );
-        })}
-        <button onClick={this.handleClick}>Click</button>
-      </div>
-    );
-  }
-}
+
